@@ -115,7 +115,7 @@ on_arc_clicked                         (GtkButton       *button,
 
 void
 on_calendarclient_day_selected_double_click
-                                        (GtkCalendar     *calendar,
+                                        (GtkCalendar     *objet_graphique,
                                         gpointer         user_data);
 
 void
@@ -228,4 +228,8 @@ on_lougoutclient_clicked               (GtkButton       *button,
 
 void
 on_button3_clicked                     (GtkButton       *objet_graphique,
+                                        gpointer         user_data);
+
+void
+on_book_clicked                        (GtkButton       *objet_graphique,
                                         gpointer         user_data);

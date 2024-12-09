@@ -938,7 +938,16 @@ create_client (void)
 {
   GtkWidget *client;
   GtkWidget *fixed7;
+  GtkWidget *lougoutclient;
+  GtkWidget *alignment9;
+  GtkWidget *hbox9;
+  GtkWidget *image11;
+  GtkWidget *label59;
+  GtkWidget *ecid;
+  GtkWidget *ecuser;
   GtkWidget *label50;
+  GtkWidget *label65;
+  GtkWidget *label64;
   GtkWidget *notebook2;
   GtkWidget *fixed8;
   GtkWidget *label51;
@@ -950,7 +959,6 @@ create_client (void)
   GtkWidget *label55;
   GtkObject *spinbuttonduration_adj;
   GtkWidget *spinbuttonduration;
-  GtkWidget *_1;
   GtkWidget *_2;
   GtkWidget *_3;
   GtkWidget *_4;
@@ -974,8 +982,14 @@ create_client (void)
   GtkWidget *_22;
   GtkWidget *_23;
   GtkWidget *label56;
-  GtkWidget *_24;
+  GtkWidget *book;
+  GtkWidget *alignment10;
+  GtkWidget *hbox10;
+  GtkWidget *image12;
+  GtkWidget *label66;
   GtkWidget *comboboxentry1;
+  GtkWidget *_1;
+  GtkWidget *_24;
   GtkWidget *label47;
   GtkWidget *fixed9;
   GtkWidget *treeview1;
@@ -987,11 +1001,6 @@ create_client (void)
   GtkWidget *fixed10;
   GtkWidget *label58;
   GtkWidget *label49;
-  GtkWidget *lougoutclient;
-  GtkWidget *alignment9;
-  GtkWidget *hbox9;
-  GtkWidget *image11;
-  GtkWidget *label59;
 
   client = gtk_window_new (GTK_WINDOW_TOPLEVEL);
   gtk_window_set_title (GTK_WINDOW (client), _("client"));
@@ -1001,10 +1010,53 @@ create_client (void)
   gtk_container_add (GTK_CONTAINER (client), fixed7);
   gtk_widget_set_size_request (fixed7, -1, 664);
 
+  lougoutclient = gtk_button_new ();
+  gtk_widget_show (lougoutclient);
+  gtk_fixed_put (GTK_FIXED (fixed7), lougoutclient, 912, 0);
+  gtk_widget_set_size_request (lougoutclient, 88, 48);
+
+  alignment9 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment9);
+  gtk_container_add (GTK_CONTAINER (lougoutclient), alignment9);
+
+  hbox9 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox9);
+  gtk_container_add (GTK_CONTAINER (alignment9), hbox9);
+
+  image11 = gtk_image_new_from_stock ("gtk-quit", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image11);
+  gtk_box_pack_start (GTK_BOX (hbox9), image11, FALSE, FALSE, 0);
+
+  label59 = gtk_label_new_with_mnemonic (_("Log-out"));
+  gtk_widget_show (label59);
+  gtk_box_pack_start (GTK_BOX (hbox9), label59, FALSE, FALSE, 0);
+
+  ecid = gtk_entry_new ();
+  gtk_widget_show (ecid);
+  gtk_fixed_put (GTK_FIXED (fixed7), ecid, 328, 23);
+  gtk_widget_set_size_request (ecid, 190, 27);
+  gtk_entry_set_invisible_char (GTK_ENTRY (ecid), 8226);
+
+  ecuser = gtk_entry_new ();
+  gtk_widget_show (ecuser);
+  gtk_fixed_put (GTK_FIXED (fixed7), ecuser, 632, 23);
+  gtk_widget_set_size_request (ecuser, 190, 27);
+  gtk_entry_set_invisible_char (GTK_ENTRY (ecuser), 8226);
+
   label50 = gtk_label_new (_("Espace Client "));
   gtk_widget_show (label50);
   gtk_fixed_put (GTK_FIXED (fixed7), label50, 24, 16);
   gtk_widget_set_size_request (label50, 232, 40);
+
+  label65 = gtk_label_new (_("USERNAME"));
+  gtk_widget_show (label65);
+  gtk_fixed_put (GTK_FIXED (fixed7), label65, 517, 16);
+  gtk_widget_set_size_request (label65, 116, 40);
+
+  label64 = gtk_label_new (_("ID"));
+  gtk_widget_show (label64);
+  gtk_fixed_put (GTK_FIXED (fixed7), label64, 269, 16);
+  gtk_widget_set_size_request (label64, 49, 40);
 
   notebook2 = gtk_notebook_new ();
   gtk_widget_show (notebook2);
@@ -1059,11 +1111,6 @@ create_client (void)
   gtk_widget_show (spinbuttonduration);
   gtk_fixed_put (GTK_FIXED (fixed8), spinbuttonduration, 632, 336);
   gtk_widget_set_size_request (spinbuttonduration, 190, 27);
-
-  _1 = gtk_check_button_new_with_mnemonic (_("1"));
-  gtk_widget_show (_1);
-  gtk_fixed_put (GTK_FIXED (fixed8), _1, 152, 96);
-  gtk_widget_set_size_request (_1, 40, 24);
 
   _2 = gtk_check_button_new_with_mnemonic (_("2"));
   gtk_widget_show (_2);
@@ -1180,10 +1227,26 @@ create_client (void)
   gtk_fixed_put (GTK_FIXED (fixed8), label56, 464, 328);
   gtk_widget_set_size_request (label56, 120, 48);
 
-  _24 = gtk_check_button_new_with_mnemonic (_("8"));
-  gtk_widget_show (_24);
-  gtk_fixed_put (GTK_FIXED (fixed8), _24, 732, 192);
-  gtk_widget_set_size_request (_24, 40, 24);
+  book = gtk_button_new ();
+  gtk_widget_show (book);
+  gtk_fixed_put (GTK_FIXED (fixed8), book, 576, 480);
+  gtk_widget_set_size_request (book, 104, 45);
+
+  alignment10 = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment10);
+  gtk_container_add (GTK_CONTAINER (book), alignment10);
+
+  hbox10 = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox10);
+  gtk_container_add (GTK_CONTAINER (alignment10), hbox10);
+
+  image12 = gtk_image_new_from_stock ("gtk-ok", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image12);
+  gtk_box_pack_start (GTK_BOX (hbox10), image12, FALSE, FALSE, 0);
+
+  label66 = gtk_label_new_with_mnemonic (_("book slot"));
+  gtk_widget_show (label66);
+  gtk_box_pack_start (GTK_BOX (hbox10), label66, FALSE, FALSE, 0);
 
   comboboxentry1 = gtk_combo_box_entry_new_text ();
   gtk_widget_show (comboboxentry1);
@@ -1193,6 +1256,16 @@ create_client (void)
   gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry1), _("East-parking-lot"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry1), _("West-parking-lot"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (comboboxentry1), _("Sout-parking-lot"));
+
+  _1 = gtk_check_button_new_with_mnemonic (_("1"));
+  gtk_widget_show (_1);
+  gtk_fixed_put (GTK_FIXED (fixed8), _1, 152, 96);
+  gtk_widget_set_size_request (_1, 40, 24);
+
+  _24 = gtk_check_button_new_with_mnemonic (_("8"));
+  gtk_widget_show (_24);
+  gtk_fixed_put (GTK_FIXED (fixed8), _24, 732, 192);
+  gtk_widget_set_size_request (_24, 40, 24);
 
   label47 = gtk_label_new (_("Parking slot reservation "));
   gtk_widget_show (label47);
@@ -1244,32 +1317,11 @@ create_client (void)
   gtk_widget_show (label49);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook2), gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook2), 2), label49);
 
-  lougoutclient = gtk_button_new ();
-  gtk_widget_show (lougoutclient);
-  gtk_fixed_put (GTK_FIXED (fixed7), lougoutclient, 912, 0);
-  gtk_widget_set_size_request (lougoutclient, 88, 48);
-
-  alignment9 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment9);
-  gtk_container_add (GTK_CONTAINER (lougoutclient), alignment9);
-
-  hbox9 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox9);
-  gtk_container_add (GTK_CONTAINER (alignment9), hbox9);
-
-  image11 = gtk_image_new_from_stock ("gtk-quit", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image11);
-  gtk_box_pack_start (GTK_BOX (hbox9), image11, FALSE, FALSE, 0);
-
-  label59 = gtk_label_new_with_mnemonic (_("Log-out"));
-  gtk_widget_show (label59);
-  gtk_box_pack_start (GTK_BOX (hbox9), label59, FALSE, FALSE, 0);
-
+  g_signal_connect ((gpointer) lougoutclient, "clicked",
+                    G_CALLBACK (on_lougoutclient_clicked),
+                    NULL);
   g_signal_connect ((gpointer) calendarclient, "day_selected_double_click",
                     G_CALLBACK (on_calendarclient_day_selected_double_click),
-                    NULL);
-  g_signal_connect ((gpointer) _1, "toggled",
-                    G_CALLBACK (on_1_toggled),
                     NULL);
   g_signal_connect ((gpointer) _2, "toggled",
                     G_CALLBACK (on_2_toggled),
@@ -1337,6 +1389,12 @@ create_client (void)
   g_signal_connect ((gpointer) _23, "toggled",
                     G_CALLBACK (on_23_toggled),
                     NULL);
+  g_signal_connect ((gpointer) book, "clicked",
+                    G_CALLBACK (on_book_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) _1, "toggled",
+                    G_CALLBACK (on_1_toggled),
+                    NULL);
   g_signal_connect ((gpointer) _24, "toggled",
                     G_CALLBACK (on_24_toggled),
                     NULL);
@@ -1346,14 +1404,20 @@ create_client (void)
   g_signal_connect ((gpointer) buttoncr, "clicked",
                     G_CALLBACK (on_buttoncr_clicked),
                     NULL);
-  g_signal_connect ((gpointer) lougoutclient, "clicked",
-                    G_CALLBACK (on_lougoutclient_clicked),
-                    NULL);
 
   /* Store pointers to all widgets, for use by lookup_widget(). */
   GLADE_HOOKUP_OBJECT_NO_REF (client, client, "client");
   GLADE_HOOKUP_OBJECT (client, fixed7, "fixed7");
+  GLADE_HOOKUP_OBJECT (client, lougoutclient, "lougoutclient");
+  GLADE_HOOKUP_OBJECT (client, alignment9, "alignment9");
+  GLADE_HOOKUP_OBJECT (client, hbox9, "hbox9");
+  GLADE_HOOKUP_OBJECT (client, image11, "image11");
+  GLADE_HOOKUP_OBJECT (client, label59, "label59");
+  GLADE_HOOKUP_OBJECT (client, ecid, "ecid");
+  GLADE_HOOKUP_OBJECT (client, ecuser, "ecuser");
   GLADE_HOOKUP_OBJECT (client, label50, "label50");
+  GLADE_HOOKUP_OBJECT (client, label65, "label65");
+  GLADE_HOOKUP_OBJECT (client, label64, "label64");
   GLADE_HOOKUP_OBJECT (client, notebook2, "notebook2");
   GLADE_HOOKUP_OBJECT (client, fixed8, "fixed8");
   GLADE_HOOKUP_OBJECT (client, label51, "label51");
@@ -1364,7 +1428,6 @@ create_client (void)
   GLADE_HOOKUP_OBJECT (client, entrydateclient, "entrydateclient");
   GLADE_HOOKUP_OBJECT (client, label55, "label55");
   GLADE_HOOKUP_OBJECT (client, spinbuttonduration, "spinbuttonduration");
-  GLADE_HOOKUP_OBJECT (client, _1, "_1");
   GLADE_HOOKUP_OBJECT (client, _2, "_2");
   GLADE_HOOKUP_OBJECT (client, _3, "_3");
   GLADE_HOOKUP_OBJECT (client, _4, "_4");
@@ -1388,8 +1451,14 @@ create_client (void)
   GLADE_HOOKUP_OBJECT (client, _22, "_22");
   GLADE_HOOKUP_OBJECT (client, _23, "_23");
   GLADE_HOOKUP_OBJECT (client, label56, "label56");
-  GLADE_HOOKUP_OBJECT (client, _24, "_24");
+  GLADE_HOOKUP_OBJECT (client, book, "book");
+  GLADE_HOOKUP_OBJECT (client, alignment10, "alignment10");
+  GLADE_HOOKUP_OBJECT (client, hbox10, "hbox10");
+  GLADE_HOOKUP_OBJECT (client, image12, "image12");
+  GLADE_HOOKUP_OBJECT (client, label66, "label66");
   GLADE_HOOKUP_OBJECT (client, comboboxentry1, "comboboxentry1");
+  GLADE_HOOKUP_OBJECT (client, _1, "_1");
+  GLADE_HOOKUP_OBJECT (client, _24, "_24");
   GLADE_HOOKUP_OBJECT (client, label47, "label47");
   GLADE_HOOKUP_OBJECT (client, fixed9, "fixed9");
   GLADE_HOOKUP_OBJECT (client, treeview1, "treeview1");
@@ -1401,11 +1470,6 @@ create_client (void)
   GLADE_HOOKUP_OBJECT (client, fixed10, "fixed10");
   GLADE_HOOKUP_OBJECT (client, label58, "label58");
   GLADE_HOOKUP_OBJECT (client, label49, "label49");
-  GLADE_HOOKUP_OBJECT (client, lougoutclient, "lougoutclient");
-  GLADE_HOOKUP_OBJECT (client, alignment9, "alignment9");
-  GLADE_HOOKUP_OBJECT (client, hbox9, "hbox9");
-  GLADE_HOOKUP_OBJECT (client, image11, "image11");
-  GLADE_HOOKUP_OBJECT (client, label59, "label59");
 
   return client;
 }

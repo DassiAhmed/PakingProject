@@ -13,6 +13,7 @@
 
 int G[] = {0,0,0,0,0,0};
 int G1[] = {0,0,0,0,0,0};
+int k[]= {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 void
 on_logout_clicked                      (GtkButton       *button,
                                         gpointer         user_data)
@@ -513,13 +514,14 @@ strcpy(p.gender,"Female");
 
 if (G1[2]==1)
 {
-strcpy(p.skill,"vehicle_maintenance ");}
+strcpy(p.skill,"First_Aide ");}
 else if (G1[3]==1){
-strcpy(p.skill,"customer_service");}
+printf("%d",G[3]);
+strcpy(p.skill,"vehicle_maintenance");}
 else if (G1[4]==1){
 strcpy(p.skill,"security");}
 else if (G1[5]==1){
-strcpy(p.skill,"First_Aide ");}
+strcpy(p.skill,"customer_service ");}
 modifier_user(p.id,p);
 }
 
@@ -538,10 +540,34 @@ afficher_Client(treeviewd);
 
 void
 on_calendarclient_day_selected_double_click
-                                        (GtkCalendar     *calendar,
+                                        (GtkCalendar     *objet_graphique,
                                         gpointer         user_data)
 {
+char buffer[256];
+char yearr[20];
+char monthh[10];
+char dayy[10];
+char yeardate[50];
+GtkWidget *client;
+guint year;
+guint month;
+guint day;
+GtkWidget *Calendar;
+GtkLabel *message;
+user p;
+client=lookup_widget(objet_graphique,"client");
+Calendar=lookup_widget(objet_graphique,"calendarclient");
+gtk_calendar_get_date(GTK_CALENDAR(Calendar),&year,&month,&day);
+sprintf(yearr,"%d",year);
+sprintf(monthh,"%d",month+1);
+sprintf(dayy,"%d",day);
 
+strcat(yeardate,dayy);
+strcat(yeardate,"/");
+strcat(yeardate,monthh);
+strcat(yeardate,"/");
+strcat(yeardate,yearr);
+gtk_entry_set_text(GTK_ENTRY(lookup_widget(client,"entrydateclient")),yeardate);
 }
 
 
@@ -549,7 +575,10 @@ void
 on_1_toggled                           (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[0] = 1;
+else
+k[0] = 0;
 }
 
 
@@ -557,7 +586,10 @@ void
 on_2_toggled                           (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[1] = 1;
+else
+k[1] = 0;
 }
 
 
@@ -565,7 +597,10 @@ void
 on_3_toggled                           (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[2] = 1;
+else
+k[2] = 0;
 }
 
 
@@ -573,7 +608,10 @@ void
 on_4_toggled                           (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[3] = 1;
+else
+k[3] = 0;
 }
 
 
@@ -581,7 +619,10 @@ void
 on_5_toggled                           (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[4] = 1;
+else
+k[4] = 0;
 }
 
 
@@ -589,7 +630,10 @@ void
 on_6_toggled                           (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[5] = 1;
+else
+k[5] = 0;
 }
 
 
@@ -597,7 +641,10 @@ void
 on_7_toggled                           (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[6] = 1;
+else
+k[6] = 0;
 }
 
 
@@ -605,7 +652,10 @@ void
 on_8_toggled                           (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[7] = 1;
+else
+k[7] = 0;
 }
 
 
@@ -613,7 +663,10 @@ void
 on_9_toggled                           (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[8] = 1;
+else
+k[8] = 0;
 }
 
 
@@ -621,7 +674,10 @@ void
 on_10_toggled                          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[9] = 1;
+else
+k[9] = 0;
 }
 
 
@@ -629,7 +685,10 @@ void
 on_11_toggled                          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[10] = 1;
+else
+k[10] = 0;
 }
 
 
@@ -637,7 +696,10 @@ void
 on_12_toggled                          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[11] = 1;
+else
+k[11] = 0;
 }
 
 
@@ -645,7 +707,10 @@ void
 on_13_toggled                          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[12] = 1;
+else
+k[12] = 0;
 }
 
 
@@ -653,7 +718,10 @@ void
 on_14_toggled                          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[13] = 1;
+else
+k[13] = 0;
 }
 
 
@@ -661,7 +729,10 @@ void
 on_15_toggled                          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[14] = 1;
+else
+k[14] = 0;
 }
 
 
@@ -669,7 +740,10 @@ void
 on_16_toggled                          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[15] = 1;
+else
+k[15] = 0;
 }
 
 
@@ -677,7 +751,10 @@ void
 on_17_toggled                          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[16] = 1;
+else
+k[16] = 0;
 }
 
 
@@ -685,7 +762,10 @@ void
 on_18_toggled                          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[17] = 1;
+else
+k[17] = 0;
 }
 
 
@@ -693,7 +773,10 @@ void
 on_19_toggled                          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[18] = 1;
+else
+k[18] = 0;
 }
 
 
@@ -701,7 +784,10 @@ void
 on_20_toggled                          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[19] = 1;
+else
+k[19] = 0;
 }
 
 
@@ -709,7 +795,10 @@ void
 on_21_toggled                          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[20] = 1;
+else
+k[20] = 0;
 }
 
 
@@ -717,7 +806,10 @@ void
 on_22_toggled                          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[21] = 1;
+else
+k[21] = 0;
 }
 
 
@@ -725,7 +817,10 @@ void
 on_23_toggled                          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[22] = 1;
+else
+k[22] = 0;
 }
 
 
@@ -733,7 +828,10 @@ void
 on_24_toggled                          (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
 {
-
+if (gtk_toggle_button_get_active(togglebutton))
+k[23] = 1;
+else
+k[23] = 0;
 }
 
 
@@ -765,6 +863,7 @@ void
 on_button3_clicked                     (GtkButton       *objet_graphique,
                                         gpointer         user_data)
 {
+GtkWidget* l;
 int x;
 GtkWidget*w;
 GtkWidget*log1;
@@ -775,21 +874,111 @@ char password[23];
 char log[23];
 GtkWidget *espace_admin;
 espace_admin = create_espace_admin ();
+client= create_client ();
 log1= lookup_widget(objet_graphique, "entryuserl") ;
 pass= lookup_widget(objet_graphique, "entrypasswordl") ;
 strcpy(password,gtk_entry_get_text(GTK_ENTRY(pass)));
 strcpy(log,gtk_entry_get_text(GTK_ENTRY(log1)));
 w=lookup_widget(objet_graphique,"window1");
 x=verifier(log,password);
-client= create_client ();
 switch(x)
 {
 case 1:gtk_widget_show (espace_admin);
 gtk_widget_hide(w);
+  break;
+
 case 2:gtk_widget_show (client);
+/*int numChars = 0;
+
+    char *lastChars = processSlotnAndExtractLastChars("client.txt", &numChars);
+
+    if (lastChars != NULL) {
+        for (int i = 0; i < numChars; i++) {
+/*
+char x[30]; 
+sprintf(x, "6");*/
+l=lookup_widget(objet_graphique,"24");
+gtk_widget_set_sensitive(l, FALSE);   
+//}
+  //}     
 gtk_widget_hide(w);
   break;
 }
+
+}
+
+
+void
+on_book_clicked                        (GtkButton       *objet_graphique,
+                                        gpointer         user_data)
+{
+GtkWidget*ID;
+GtkWidget*username;
+GtkWidget *combobox;
+GtkWidget *l;
+GtkWidget*date;
+citoyen x;
+l=lookup_widget(objet_graphique,"client");
+ID = lookup_widget(objet_graphique, "ecid") ;
+username = lookup_widget(objet_graphique, "ecuser") ;
+date = lookup_widget(objet_graphique, "entrydateclient") ;
+strcpy(x.id1,gtk_entry_get_text(GTK_ENTRY(ID)));
+strcpy(x.nikname,gtk_entry_get_text(GTK_ENTRY(username)));
+strcpy(x.startdate,gtk_entry_get_text(GTK_ENTRY(date)));
+combobox=lookup_widget(objet_graphique,"comboboxentry1");
+strcpy(x.parkingarea,gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox)));
+x.duration=gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (lookup_widget(objet_graphique,"spinbuttonduration")));
+if (k[0]==1)
+{
+strcpy(x.slotn,"A1");}
+else if (k[1]==1){
+strcpy(x.slotn,"A2");}
+else if (k[2]==1){
+strcpy(x.slotn,"A3");}
+else if (k[3]==1){
+strcpy(x.slotn,"A4");}
+else if (k[4]==1){
+strcpy(x.slotn,"A5");}
+else if (k[5]==1){
+strcpy(x.slotn,"A6");}
+else if (k[6]==1){
+strcpy(x.slotn,"A7");}
+else if (k[7]==1){
+strcpy(x.slotn,"A8");}
+else if (k[8]==1){
+strcpy(x.slotn,"B1");}
+else if (k[9]==1){
+strcpy(x.slotn,"B2");}
+else if (k[10]==1){
+strcpy(x.slotn,"B3");}
+else if (k[11]==1){
+strcpy(x.slotn,"B4");}
+else if (k[12]==1){
+strcpy(x.slotn,"B5");}
+else if (k[13]==1){
+strcpy(x.slotn,"B6");}
+else if (k[14]==1){
+strcpy(x.slotn,"B7");}
+else if (k[15]==1){
+strcpy(x.slotn,"B8");}
+else if (k[1]==1){
+strcpy(x.slotn,"C1");}
+else if (k[17]==1){
+strcpy(x.slotn,"C2");}
+else if (k[18]==1){
+strcpy(x.slotn,"C3");}
+else if (k[19]==1){
+strcpy(x.slotn,"C4");}
+else if (k[20]==1){
+strcpy(x.slotn,"C5");}
+else if (k[21]==1){
+strcpy(x.slotn,"C6");}
+else if (k[22]==1){
+strcpy(x.slotn,"C7");}
+else if (k[23]==1){
+strcpy(x.slotn,"C8");}
+ajouter_client(x );
+
 
 }
 

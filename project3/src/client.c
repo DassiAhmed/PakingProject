@@ -2,6 +2,7 @@
 #include <ctype.h>
 #include <stdbool.h>
 
+
 void afficher_Client (GtkWidget *liste)
 {
 GtkCellRenderer *renderer ;
@@ -15,9 +16,9 @@ citoyen p ;
 char nikname[50];
 char parkingarea[50];
 char startdate[50];
-char duration[50];
+int duration;
 char id1[50];
-int slotn;
+char slotn[50];
 
 store=NULL;
 
@@ -57,15 +58,15 @@ if (store == NULL)
 }
 
 
-	    store = gtk_list_store_new(NUM_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING);
+	    store = gtk_list_store_new(NUM_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING,G_TYPE_INT);
 
 
 
 
             f=fopen("client.txt","r");
             if (f!=NULL){
-		while (fscanf(f,"%s %s %s %d %s %s",id1,nikname,parkingarea,&slotn,startdate,duration)!=EOF) {
-		printf("id1: %s, nikname: %s, parkingarea: %s, slotn: %d, startdate: %s, duration: %s\n",
+		while (fscanf(f,"%s %s %s %s %s %d",id1,nikname,parkingarea,slotn,startdate,&duration)!=EOF) {
+		printf("id1: %s, nikname: %s, parkingarea: %s, slotn: %s, startdate: %s, duration: %d\n",
       			id1, nikname, parkingarea, slotn, startdate, duration);
             gtk_list_store_append(store, &iter);
         gtk_list_store_set(store, &iter,
@@ -93,13 +94,14 @@ GtkTreeIter iter ;
 GtkListStore *store ;
 
 citoyen p ;
- 
+
 char nikname[50];
 char parkingarea[50];
 char startdate[50];
-char duration[50];
+int duration;
 char id1[50];
-int slotn;
+char slotn[50];
+
 store=NULL;
 
 FILE *f ;
@@ -137,13 +139,13 @@ if (store == NULL)
 }
 
 
-	    store = gtk_list_store_new(NUM_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_INT, G_TYPE_STRING, G_TYPE_STRING);
+	    store = gtk_list_store_new(NUM_COLUMNS, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING , G_TYPE_INT);
 
 
 
            f=fopen("client.txt","r");
             if (f!=NULL){
-		while (fscanf(f,"%s %s %s %d %s %s",id1,nikname,parkingarea,&slotn,startdate,duration)!=EOF)  {
+		while (fscanf(f,"%s %s %s %s %s %d",id1,nikname,parkingarea,slotn,startdate,&duration)!=EOF)  {
             if(strcmp(type,startdate)==0){
             gtk_list_store_append(store, &iter);
         gtk_list_store_set(store, &iter,
@@ -163,8 +165,126 @@ if (store == NULL)
 
 
 }
+int ajouter_client(citoyen x )
+{
+    FILE * f=fopen("client.txt", "a");
+    if(f!=NULL)
+    {
+        fprintf(f,"%s %s %s %s %s %d",x.id1,x.nikname,x.parkingarea,x.slotn,x.startdate,x.duration);
+        fclose(f);
+        return 1;
+    }
+    else return 0;
+}
+int verifierr(char slot[])
+{
+char nikname[50];
+char parkingarea[50];
+char startdate[50];
+int duration;
+char id1[50];
+char slotn[50];
+
+int r=0;
+citoyen x;
+FILE *f;
 
 
+f=fopen("client.txt","r") ;
+if (f!= NULL)
+{
+
+while (fscanf(f,"%s %s %s %s %s %d",id1,nikname,parkingarea,slotn,startdate,&duration)!=EOF) 
+{
+
+if (strcmp(x.slotn,slot)==0 )
+{
+	r=1;
+        break;
+
+
+}
+
+}
+
+fclose(f);
+}
+
+return r;
+
+}
+
+int countLines(const char *filename) {
+    FILE *file = fopen(filename, "r");
+    if (file == NULL) {
+        perror("Error opening file");
+        return -1;
+    }
+
+    int lineCount = 0;
+    char ch;
+
+    while ((ch = fgetc(file)) != EOF) {
+        if (ch == '\n') {
+            lineCount++;
+        }
+    }
+
+    fclose(file);
+    return lineCount;
+}
+
+
+char* processSlotnAndExtractLastChars(const char *filename, int *numChars) {
+
+
+
+char nikname[50];
+char parkingarea[50];
+char startdate[50];
+int duration;
+char id1[50];
+char slotn[50];   
+ FILE *f= fopen(filename, "r");
+   
+
+    
+    int capacity = 10; // Initial capacity for the array
+    char *result = malloc(capacity * sizeof(char));
+    *numChars = 0;
+
+    while (fscanf(f,"%s %s %s %s %s %d",id1,nikname,parkingarea,slotn,startdate,&duration)!=EOF) {
+        size_t len = strlen(slotn);
+        if (len > 1) { // Ensure there are at least two characters
+            char beforeLast = slotn[len - 2];
+            char last = slotn[len - 1];
+            char processed[10];
+
+            if (beforeLast == 'A') {
+                snprintf(processed, sizeof(processed), "%c", last);
+            } else if (beforeLast == 'B') {
+                int num = atoi(&last) + 8;
+                snprintf(processed, sizeof(processed), "%d", num);
+            } else if (beforeLast == 'C') {
+                int num = atoi(&last) + 16;
+                snprintf(processed, sizeof(processed), "%d", num);
+            } else {
+                continue; // Skip this slotn if it doesn't match A, B, or C
+            }
+
+            // Add the processed character to the result array
+            if (*numChars >= capacity) {
+                capacity *= 2;
+                result = realloc(result, capacity * sizeof(char));
+            }
+            result[*numChars] = processed[0]; // Take the first character of processed
+            (*numChars)++;
+        }
+    }
+
+    fclose(f);
+    return result;
+}
 
 
 
